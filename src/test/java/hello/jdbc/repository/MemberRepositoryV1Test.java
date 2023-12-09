@@ -22,7 +22,7 @@ class MemberRepositoryV1Test {
     @BeforeEach
     void setUp() {
         //기본 DriverManagerDataSource - 항상 새로운 커네션을 획득
-        //DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
 
         // 커넥션 풀링 사용
         HikariDataSource dataSource = new HikariDataSource();

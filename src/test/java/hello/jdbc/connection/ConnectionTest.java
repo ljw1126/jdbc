@@ -41,11 +41,11 @@ public class ConnectionTest {
         dataSource.setJdbcUrl(URL);
         dataSource.setUsername(USERNAME);
         dataSource.setPassword(PASSWORD);
-        dataSource.setMaximumPoolSize(10);
         dataSource.setPoolName("MyPool");
+
         useDateSource(dataSource);
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
     private void useDateSource(DataSource dataSource) throws SQLException {
         Connection connection1 = dataSource.getConnection();
