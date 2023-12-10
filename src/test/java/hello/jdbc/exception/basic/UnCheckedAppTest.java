@@ -1,5 +1,6 @@
 package hello.jdbc.exception.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Slf4j
 public class UnCheckedAppTest {
 
     @DisplayName("")
@@ -17,6 +19,18 @@ public class UnCheckedAppTest {
 
         assertThatThrownBy(controller::request)
                 .isInstanceOfAny(RuntimeSQLException.class, RuntimeConnectException.class);
+    }
+
+    @DisplayName("")
+    @Test
+    void stackTrace() {
+        Controller controller = new Controller();
+
+        try {
+            controller.request();
+        } catch (RuntimeSQLException | RuntimeConnectException e) {
+            log.info("ex", e);
+        }
     }
 
     static class Controller {
@@ -70,6 +84,9 @@ public class UnCheckedAppTest {
     }
 
     static class RuntimeSQLException extends RuntimeException {
+        public RuntimeSQLException() {
+        }
+
         public RuntimeSQLException(Throwable cause) {
             super(cause);
         }
